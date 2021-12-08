@@ -1,0 +1,76 @@
+---
+----
+<h1 align="center", >My first day in RStudio</h1>
+<h3 align="center">Absolute beginner in RStudio and GitHub tutorial for Data Science for Ecological and Environmental Science course</h3>
+------
+
+
+
+#### __Tutorial Aims__
+
+#### <a href="#section1"> 1. What is R and connecting it to GitHub</a>
+
+#### <a href="#section2"> 2. Starting to code</a>
+
+#### <a href="#section3"> 3. Plotting </a>
+
+#### <a href="#section4"> 4. Saving plots </a>
+
+#### <a href="#section5"> 5. Uploading to GitHub </a>
+
+------
+
+
+In case you are as lost as I was during first 1-2 weeks of the Data Science course, this tutorial is for you! I promise you won't be so lost anymore. 
+To be honest, it is not so overwhelming once you know what are you doing.</div>
+
+
+There are just few things you need to be ready for: 
+
+- RStudio likes to not cooperate with you very often but try to avoid breakdowns, it will work somehow
+
+- There will be a lot things to do during the semester, but you can do it! 
+
+- They will be telling you its a lot of fun and you may not agree (especially when your R decides to not work) but it can be fun too 
+
+
+------
+
+<a name="section1"></a>
+
+## 1. What is R?
+
+You have probably heard already about some of the programming languages such as JavaScript, Python, C, Java... R is also one of them. Actually, in 2021 it was the 8th most useful programming language with annual salary of  $93,000 [(Northeastern.edu)](https://www.northeastern.edu/graduate/blog/most-popular-programming-languages/). It is used mostly for statistical analysis of large data sets and companies like Facebook. Google, New York Times or BBC, Twitter or Microsoft use it. 
+
+
+To download R, follow 1st part of this [tutorial](https://ourcodingclub.github.io/tutorials/intro-to-r/). 
+
+Now, let’s have a look how the R looks like: 
+
+
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

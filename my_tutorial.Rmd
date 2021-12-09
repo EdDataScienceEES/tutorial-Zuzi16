@@ -116,7 +116,7 @@ Now, you can see a new tab in the Environment window called __Git__. That's the 
 ------
 
 
-## <a href="#section2">2. Starting to code</a>
+## <a href="#section2">2. Starting to code</a> 
 
  
 Here we are! Now we are ready to _start coding_. 

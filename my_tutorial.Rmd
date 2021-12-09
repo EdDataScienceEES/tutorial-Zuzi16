@@ -6,20 +6,14 @@ date: <center> 6 December 2021 </center>
 output:
   prettydoc::html_pretty:
     theme: hpstr
-  
+---
 
 ---
 
-#### __Tutorial Aims__
 
-###  1. What is R and connecting it to GitHub
-###  2. Starting to code
-###  3. Plotting 
-###  4. Saving plots 
-###  5. Uploading to GitHub 
-
-------
-
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy('')
+```
 
 In case you are as lost as I was during first 1-2 weeks of the Data Science course, this tutorial is for you! I promise you won't be so lost anymore. 
 To be honest, it is not so overwhelming once you know what are you doing.</div>
@@ -33,10 +27,9 @@ There are just few things you need to be ready for:
 
 - They will be telling you its a lot of fun and you may not agree (especially when your R decides to not work) but it can be fun too 
 
+ 
 
-------- 
-
-### 1. What is R and connecting it to GitHub
+## 1. What is R and connecting it to GitHub
 
 
 You have probably heard already about some of the programming languages such as JavaScript, Python, C, Java... R is also one of them. Actually, in 2021 it was the 8th most useful programming language with annual salary of  $93,000 [(Northeastern.edu)](https://www.northeastern.edu/graduate/blog/most-popular-programming-languages/). It is used mostly for statistical analysis of large data sets and companies like Facebook. Google, New York Times or BBC, Twitter or Microsoft use it. 
@@ -110,13 +103,14 @@ Now, you can see new tab in the Environment window called Git. Thats the sign al
 
 ------
 
-###  2. Starting to code
+##  2. Starting to code
 
 Here we are! Now we are ready to start coding. 
 
 At the beginning, all of your scripts should include the name of the tutorial you are doing (or assessment) - basicaly what is this script about, your name and contact and date. It is recomended to avoid date formats that can be misunderstood by European/American ones. You can use: 6 December 2021
 
-```{r, message = FALSE }
+```{r, class.source='klippy'}
+
 
 # Data Science: Tutorial                       # note down information about course/Coding club and tutorial
 # My first day in RStudio
@@ -130,7 +124,8 @@ At the beginning, all of your scripts should include the name of the tutorial yo
 R is working with the different packages, which include different functions. Before you start working on some code, usually you need to have packages installed and loaded. However, you also can code in base R which means you dont need to have any packages because R itself include some functions. In the Data Science, however, most of the tasks require specific packages so lets look at this. 
 __To run the code, press Ctrl + Enter___
 
-```{r, message = FALSE}
+```{r, class.source='klippy'}
+
 # Install packages ----
 # Here are the most used R packages you will need in Data Science
 # First, install packages 
@@ -344,7 +339,7 @@ Now let's try it with ggplot2 package. This package allows us to make much nicer
     geom_histogram(binwidth = 5, colour = "dark green", fill = "light blue") +    # Changing the binwidth and colours of the bars.   
     geom_vline(aes(xintercept = mean(LPI)),                                # Adding a line for mean abundance
                colour = "orange", linetype = "dashed", size=1) +           # Changing the look of the line
-    theme_minimal() +                                         # Changing the theme to get rid of the grey background
+    theme_classic() +                                         # Changing the theme to get rid of the grey background
     ylab("Count\n") +                                         # Changing the text of the y and x axis label
     xlab("\nLPI")  +                                          # \n adds a blank line between axis and text
     ggtitle("LPI distribution (1970-2016)") +                 # Adding plot title
@@ -352,8 +347,8 @@ Now let's try it with ggplot2 package. This package allows us to make much nicer
           plot.title = element_text(hjust=0.5, size = 12),         # hjust = moves to the right/left
           axis.title.x = element_text(size = 12, face = "plain"),  # face="plain" is the default, you can change it to italic, bold, etc. 
           axis.title.y = element_text(size = 12, face= "plain"),
-          panel.grid = element_blank(),                  # Removing the grey grid lines
-          plot.margin = unit(c(1,1,1,1), units = "cm"))) 
+          panel.grid = element_blank(),                       # Removing the grey grid lines
+          plot.margin = unit(c(1,1,1,1), units = "cm")))      # adding a 1cm margin around the plot
 ```
 
 "aes" = aesthetic:  this is where you specify your data source and variables, AND the properties of the graph which depend on those variables. If you want all data points to be the same colour, you would define the colour = argument outside the aes() function. If you want the data points to be coloured by a factor’s levels (e.g. by site or species), you specify the colour = argument inside the aes()
@@ -381,10 +376,11 @@ data_long <- data_long %>%
 # "fill" in aes tells R to colour the bars according to different Entities. 
 (LPI_aver_barplot <- ggplot(data_long, aes(x = Entity, y = LPIaverage, fill=Entity)) +
     geom_bar(position = position_dodge(), stat = "identity") +   # we need to use stat = "identity" when using "geom_bar" and own y values 
-    theme_minimal() +
+    theme_classic() +
     ggtitle("Average LPI (1970-2016)") +                   # plot title
-    ylab("LPI\n") +                                        # y-axis title
+    ylab("LPI") +                                          # y-axis title
     xlab("Entity")  +                                      # x-axis title
+    scale_y_continuous(expand = c(0,0)) +                  # deleting gap between x axis and plot
     theme(axis.text.x = element_blank(),                   # deleting names of Entities form x-axis
           axis.text.y = element_text(size = 10),           # changing size of y-axis labels
           axis.title = element_text(size = 12, face = "plain"),   # adjusting axis titles size and format
@@ -393,6 +389,7 @@ data_long <- data_long %>%
           legend.text = element_text(size = 10, face = "italic"), # Setting the font for the legend text
           legend.title = element_blank(),                         # Removing the legend title
           legend.position = "right"))                             # Setting legend position 
+
 
 ```
 
@@ -413,17 +410,18 @@ Boxplot shows us median (horizontal line in the box), minimum (end of the lower 
 (LPI_boxplot <- ggplot(data_long, aes(Entity, LPI)) +             
     geom_boxplot(aes(fill = Entity)) +                             # adding colour of the boxes by Entity (fill=Entity)
     theme_classic() +                                              # changing theme
-    ggtitle(" LPI variation across locations (1970-2016)")  +       # plot title
-    ylab("LPI\n") +                                                # y-axis title
+    ggtitle("LPI variation across location (1970-2016)")  +        # plot title
+    ylab("LPI") +                                                  # y-axis title
     xlab("\nLocation")  +                                          # x-axis title
     theme(axis.text.x = element_blank(),                           # deleting x-axis labels (because we have it in the legend)
           axis.title = element_text(size = 14, face = "plain"),    # adjusting axis titles                    
-          panel.grid = element_blank(),                            # Removing the background grid lines  
+          panel.grid = element_blank(),                            # removing the background grid lines  
           plot.title = element_text(size = 12, hjust=0.5),         # adjusting plot title   
-          plot.margin = unit(c(1,1,1,1), units = , "cm"),          # adding a margin
+          plot.margin = unit(c(1,1,1,1), units = , "cm"),          # adding a 1cm margin around the plot
           legend.text = element_text(size = 10, face = "italic"),  # setting the font for the legend text
           legend.title = element_blank(),                          # removing the legend title
-          legend.position = "right"))                              # setting legend position
+          legend.position = "right"))                              # setting legend position 
+
 
 ```
 
@@ -442,21 +440,22 @@ Last plot we will create today is scatterplot. From our data we will create scat
 
 # Beautifying
 (LPI_scatter <- ggplot(data_long, aes (x = year, y = LPI, colour =Entity)) +
-    geom_point(size = 1.5) +                                # changing point size
-    geom_smooth(method = "lm", se=FALSE) +                  # adding linear model fit (method=lm), deleting standard error ribbons (se=false)
-    theme_classic() +                                       # changing theme 
+    geom_point(size = 1.2) +                        # changing point size
+    geom_smooth(method = "lm", se=FALSE) +          # adding linear model fit (method=lm), deleting standard error ribbons (se=false)
+    theme_classic() +                                             # changing theme 
     ggtitle("Yearly LPI in different locations (1970-2016)")  +   # plot title
     ylab("LPI\n") +                                               # y-axis title
     xlab("\nYear")  +                                             # x-axis title
     theme(axis.text.x = element_text(size = 10, angle = 45, vjust = 1, hjust = 1),  # adjusting x-axis labels (size, angle, vjust and hjust - vertical and horizontal position)
-          axis.text.y = element_text(size = 10),                                    # adjusting y-axis labels
-          axis.title = element_text(size = 12, face = "plain"),                     # adjusting axis titles     
+          axis.text.y = element_text(size = 10),                    # adjusting y-axis labels
+          axis.title = element_text(size = 12, face = "plain"),     # adjusting axis titles     
           panel.grid = element_blank(),                             # removing the background grid lines               
           plot.margin = unit(c(1,1,1,1), units = , "cm"),           # adding a 1cm margin around the plot
           plot.title = element_text(size = 12, hjust=0.3),          # adjusting plot title 
           legend.text = element_text(size = 10, face = "italic"),   # setting the font for the legend text
           legend.title = element_blank(),                           # removing the legend title
           legend.position = "right"))                               # setting legend position 
+
 
 ```
 
@@ -472,10 +471,10 @@ Like this:
 # with ggplot2
 getwd()  # to remember your working directory to be able to specify where the plot should be saved 
 # One 
-ggsave("histogram.jpg", plot=LPI_hist)
-ggsave("barplot.jpg", plot= LPI_aver_barplot, width = 7) 
-ggsave("boxplot.jpg", plot = LPI_boxplot, width = 7)
-ggsave("scatterplot.jpg", plot = LPI_scatter, width = 7)
+ggsave("figures/histogram.jpg", plot=LPI_hist)
+ggsave("figures/barplot.jpg", plot= LPI_aver_barplot, width = 7) 
+ggsave("figures/boxplot.jpg", plot = LPI_boxplot, width = 7)
+ggsave("figures/scatterplot.jpg", plot = LPI_scatter, width = 7)
 
 ```
 First, in the brackets we need to specify the filepath where your plot will be saved finished by name of the figure.jpg (if you want to save it in jpg format). 
@@ -503,7 +502,7 @@ Like this:
           legend.text = element_text(size = 10, face = "italic"),  
           legend.title = element_blank(),                          
           legend.position = "right")) 
-ggsave("boxplot1.jpg", width=7, height= 3.5)     # adding ggsave code with specified dimensions and filepath + name of the figure
+ggsave("figures/boxplot1.jpg", width=7, height= 3.5)     # adding ggsave code with specified dimensions and filepath + name of the figure
 ```
 
 You can check all of the saved figures in the File window any time. There you can also see if the plot was saved (look for time when they were modified). 
@@ -513,7 +512,46 @@ Now your turn. Try to save all of the plots we did by adding ggsave below each o
 
 ###  5. Uploading to GitHub 
 
+WOHOUUU everything is done and saved. Now, last thing - I promise - we need to upload our work to GitHub because of few things: 
+
+- You never know when will R decide to not cooperate with you, so you will have your work saved online too
+
+- Also, your computer can decide to not work, because of these all assessments it needs to do with you
+
+- Data Science tutors want to see some progress over the semester in your repository and you will get some points for engagement too. 
+
+- It is very clever to upload your work continuously because GitHub will then have saved all of your history files which you may need if you realize you did something absolutely wrong :D 
+
+So, as your RStudio is already connected to Git, this process is easy. 
+
+1. Click on Git in right top window
+
+![](pictures/Obrázok15.png)
+2. Mark all new or changed files and folders you want to upload to GitHub. 
+3. Click Commit
+
+![](pictures/Obrázok16.png)
+4. Write informative commit comment 
+5. Press Commit
+
+![](pictures/Obrázok17.png)
+6. Close the Git Commit Window
+7. Press Pull
+
+![](pictures/Obrázok18.png)
+8. Close Git Push Window
+9. Press Push
+10. Everything should be uploaded on GitHub  (unless there is an error message)
+
+![](pictures/Obrázok19.png)
+11. Check your repository on GitHub
+
+![](pictures/Obrázok20.png)
+
+ALL DONE! 
+So, are you lost at the same level as you were at the begining of this tutorial? I hope not! 
 
 
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+

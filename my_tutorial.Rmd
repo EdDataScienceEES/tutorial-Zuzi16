@@ -24,8 +24,8 @@ There are just few things you need to be ready for:
 - There will be a lot to do during the semester, but you can do it! 
 
 - They will be telling you it's a lot of fun and you may not agree (especially when your R decides not to work) but it can be fun too. Check these tutorials for some examples: 
-  - Magic figures
-  - CoOl packages
+  - [Magic figures](*will be added)
+  - [Cool packages](*will be added) 
 
 
 ## Tutorial aims: 
@@ -40,7 +40,7 @@ There are just few things you need to be ready for:
 
 
 
-## <a href="#section1">1. What is R and connecting it to GitHub</a>  
+## <a name="#section1">1. What is R and connecting it to GitHub</a>  
 
 
 You have probably already heard about some of the programming languages such as JavaScript, Python, C, Java... R is also one of them. Actually, in 2021 it was the 8th most useful programming language with an annual salary of  $93,000 [(Northeastern.edu)](https://www.northeastern.edu/graduate/blog/most-popular-programming-languages/). It is used mostly for statistical analysis of large data sets and companies like Facebook, Google, New York Times, BBC, Twitter or Microsoft use it. 
@@ -59,7 +59,9 @@ After opening RStudio, this is what shows up. Click on the New file -> R Script 
 
 Now you have all 4 important windows opened. Let's have a look at what each one of them does and what are they for. 
 
-![](pictures/Obrázok3.png)It is the place where you can type any function, or part of the code which you need help with. It will show its description, usage, value, arguments that can be used within the function, and also some examples of how to use it. 
+![](pictures/Obrázok3.png)
+
+It is the place where you can type any function, or part of the code which you need help with. It will show its description, usage, value, arguments that can be used within the function, and also some examples of how to use it. 
 
 You are going to write all the codes into the __Script__. The results, error and warning messages will show up in the __Console__ window. Created dataframes, vectors or objects will be shown in the __Environment__ window. In the right bottom window, 3 parts are most important and will be mostly used: _Files, Plots_ and _Help_.
 
@@ -75,20 +77,20 @@ You can also Google any kind of problem and there are many helpful pages on the 
 
 During the semester, you will mostly use R connected to _GitHub_, therefore, lets connect them straight away. 
 
-[GitHub](https://github.com/) is a platform used by coders. We will use it mostly with R. It allows you to have a record of your project safely online. Just think about something like ICloud or OneDrive for your RStudio work. However, it has some more functions we will be using such as Issues. There you can post any of your problems with coding, and the team of tutors or your classmates will help you.
+[GitHub](https://github.com/) is a platform used by coders. We will use it mostly with R. It allows you to have a record of your project safely online. Just think about something like ICloud or OneDrive for your RStudio work. However, it has some more functions we will be using such as Issues. There you can post any of your problems with coding, and the team of tutors or your classmates will help you. I will talk about the Issues at the end of this tutorial. 
 
 Now, lets connect __R__ with __GitHub__.
-You need to create an account on [GitHub.com](https://github.com/) and follow the instruction for downloading Git to your computer in this [tutorial](). Please, do the 1st and 3rd part of the tutorial and come back here 😊. 
+You need to create an account on [GitHub.com](https://github.com/) and follow the instruction for downloading Git to your computer in this [tutorial](https://ourcodingclub.github.io/tutorials/git/#github4). Please, do the 1st and 3rd part of the tutorial and come back here 😊. 
 
 
 
 Your Git should now be set up and connected to R. __Now you are ready to start the semester easily!__ 
 
-Now, let's say you have your course repository on GitHub and you want to work on it in RStudio. During the whole course, all Challenges will have a specific repository which you will need to connect to RStudio to be able to upload changes to GitHub. One of the final assessments is to have your Course Repository nicely organised and full of the work you did during semester. In the course repository you should do all of the Coding Club tutorials. ĹINK TUTORIAL FOR NICE ORGANISED REPOSITORY
+Now, let's say you have your course repository on GitHub and you want to work on it in RStudio. During the whole course, all Challenges will have a specific repository which you will need to connect to RStudio to be able to upload changes to GitHub. One of the final assessments is to have your Course Repository nicely organised and full of the work you did during semester. In the course repository you should do all of the Coding Club tutorials. Here, you can check this [tutorial](https://eddatascienceees.github.io/tutorial-assignment-beverlytan/?fbclid=IwAR2nZpJNooLuqdtYIt0VqVmVULTClCNpI-3uC6ZmKNanBiRVIoHxbypG4IQ) how to make your repository nice. 
 
-Now we will connect your __Course Repository__ to Git in the _same_ way as _you will connect your Challenge repositories_. 
+Now we will connect your __Course Repository__ to Git in the _same way as you will connect your Challenge repositories_. 
 
-On GitHub you need to go to your repository. Click on the green Code box and copy the web URL address. 
+On GitHub you need to go to your repository. Click on the green __Code__ box and __copy the web URL address__. 
 
 ![](pictures/Obrázok4.png)
 ![](pictures/Obrázok5.png)
@@ -96,7 +98,7 @@ On GitHub you need to go to your repository. Click on the green Code box and cop
 
 This way you will create a _"version control project"_ – the project in RStudio which will be connected to GitHub and you will be able to upload your work from there. 
 
-Now go back to RStudio. Click on File -> New Project. Choose _Version Control_ and then _Git_.
+Now go back to RStudio. Click on _File_ -> _New Project_. Choose _Version Control_ and then _Git_.
 
 ![](pictures/Obrázok6.png)
 ![](pictures/Obrázok7.png)
@@ -116,15 +118,17 @@ Now, you can see a new tab in the Environment window called __Git__. That's the 
 ------
 
 
-## <a href="#section2">2. Starting to code</a> 
+## <a name="#section2">2. Starting to code</a> 
 
  
 Here we are! Now we are ready to _start coding_. 
 
+For this tutorial, you can find all the useful data in this [__repository__](https://github.com/EdDataScienceEES/tutorial-Zuzi16). Click on the green __code__ box but now choose __download ZIP file__. Then, _extract_ ZIP into the folder you created for this tutorial in your course repository. 
+
 
 __A. Introduction__
 
-At the beginning, all of your scripts should include the _name of the tutorial_ you are doing (or assessment) - basically what is this script about, _your name_ and _contact_ and _date_. It is recommended to avoid date formats that can be misunderstood such as European or American types. You can use: 6 December 2021
+At the beginning, all of your scripts should include the _name of the tutorial_ you are doing (or assessment) - basically what is this script about, _your name_, _contact_ and _date_. It is recommended to avoid date formats that can be misunderstood such as European or American types. You can use: 6 December 2021
 
 ```{r, class.source='klippy', results='hide'}
 
@@ -135,6 +139,7 @@ At the beginning, all of your scripts should include the _name of the tutorial_ 
 # 6 December 2021                              # date should not be in the format easily switched with European/American one
 
 ```
+
 
 __NOTES:__
 
@@ -147,9 +152,6 @@ __NOTES:__
 • __To run the code, press Ctrl + Enter__
 
 
-
-
-
 __B. Packages__
 
 R is working with the different packages, which include different functions. Before you start working on some code, usually you need to have packages installed and loaded. Although, you can also code in base R which means you don't need to have any packages installed (because R itself includes some functions). In the Data Science course, however, most of the tasks require specific packages so lets look at them:
@@ -158,17 +160,17 @@ R is working with the different packages, which include different functions. Bef
 ```{r, class.source='klippy', results='hide', message=FALSE, warning=FALSE}
 
 # Install packages ----
-# Here are the most used R packages you will need in Data Science
-# First, install packages 
+# In this tutorial we will need only tidyverse package which include many others that are used in Data Science
+
 # "install.packages" is a function we need to use for installing the required package. 
 # in the brackets is name of the package in the quotations ""
+## NOTE: DELETE THE HASHTAGS IN FRONT OF THE FOLLOWING CODE
 #install.packages("tidyverse")  # package for data manipulation includes tidyr, dplyr, ggplot2, readr...
-#install.packages("ggthemes")   # extra themes, scales and geoms for "ggplot2"
 
 # Load the packages ----
 # Load the packages using "library"
 library(tidyverse)
-library(ggthemes)
+
 
 # (Note: Normally it should work without using "" quotations when loading the packages
 # however, if it is not working, try with them (this is working for me))
@@ -184,15 +186,12 @@ To add a __section__ in the script, write _4 dash lines_ after the comment. The 
 
 __C. Loading the data__
 
-Now we can start with the code. In most of the tutorials from COding Club and during course tutorials, data will be provided in _csv format_, which you will need to load. 
-
-For this tutorial, you can find all the useful data in this [__repository__](). Click on the green code box but now choose __download ZIP file__. Then, _extract_ ZIP into the folder you created for this tutorial in your course repository. 
+In most of the tutorials from Coding Club and during course tutorials, data will be provided in _csv format_, which you will need to load. For this tutorial, you can find all the useful data in this [__repository__](https://github.com/EdDataScienceEES/tutorial-Zuzi16).
 
 To load the data, you need to tell R the "relative filepath" which is the filepath within your project folder (part that is not specified in the _working directory_). To see your working directory, write __getwd()__. In the console, the filepath for your working directory will be seen. 
 For example:
 
 ```> getwd() 
-
 [1] "C:/Users/HP/Desktop/R coding club/tutorial-Zuzi16" ```
 
 
@@ -204,13 +203,14 @@ For example:
 
 ```{r, class.source='klippy', results='hide'}
 # Starting with the code ----
+
 # usually there will be some data provided in csv format you will need to use. 
 # when doing tutorials of coding club tutorials, from the github repository you can download ZIP folder. 
 # Extract ZIP folder to your course repository folder in the computer. 
+
 ## Loading the data ---- 
 getwd()
 data <- read.csv("data/LPIdata.csv")
-
 # data: name of your dataframe
 # <- : assign symbol 
 # read.csv: function used for loading the data in csv format
@@ -240,8 +240,7 @@ We can also open the dataframe by _clicking on the data in Environment window_.
 
 ```{r, message = FALSE, class.source='klippy', results='hide'}
 
-## checking the data ----
-
+## Checking the data ----
 summary(data)
 glimpse(data)
 ```
@@ -262,7 +261,6 @@ The first column we need is column 3, the last is 49.
 # We need to check in the dataframe to see which columns are they in 
 
 data_long <- pivot_longer(data, cols=3:49, names_to = "year", values_to = "LPI")
-
 # data_long: name of new dataframe
 # pivot_longer: operator we are using for transformation of the data
 # in the bracket: (data: original data, 
@@ -279,7 +277,7 @@ if you check the data now, they are in 4 columns. However, we have _all years wi
 
 ```{r, message = FALSE, class.source='klippy', results='hide'}
 
-# Deleting the X in front of the year values
+## Deleting the X in front of the year values ----
 data_long <- mutate(data_long, year = parse_number(year))
 
 # data_long: name of the new dataframe
@@ -297,7 +295,7 @@ There are different ways to code. It is preferred to have the script as clear as
 Let's join 2 previous codes into one: 
 
 ```{r, message = FALSE, class.source='klippy', results='hide'}
-# Using pipes
+## Using pipes ----
 
 data_long <- data %>% 
   pivot_longer(cols = 3:49,            # long format
@@ -313,14 +311,14 @@ First we will write _new data frame (or object)_ we want to create. By the arrow
 
 __H. Deleting columns and values__
 
-Sometimes you have values and columns in your data that you _don't need_. In our data, Entity includes values for reptiles or the whole World. We also have the column "Code" which we do not need. let's delete them:
+Sometimes you have values and columns in your data that you _don't need_. In our data, "Entity" includes values for reptiles or the whole world. We also have the column "Code" which we do not need. Let's delete them:
 
 ```{r, message = FALSE, class.source='klippy', results='hide'}
-# First, check what different values we have in specific columns
+# Check what different values we have in specific columns
 unique(data_long$Entity) # use unique for checking the values
 unique(data_long$year)
 
-# Deleting unnecessary data using pipes
+## Deleting unnecessary data using pipes ----
 
 data_long <- data_long %>% 
   filter(Entity != "Reptiles") %>% 
@@ -343,7 +341,7 @@ data_long <- data %>%
 
 ------
 
-## <a href="#section3">3. Plotting</a>
+## <a name="#section3">3. Plotting</a>
 
 Now, our data are ready for some plotting. In this tutorial we will cover 4 types of graphs you can create, using _base R_ and _ggplot2_ package. 
 
@@ -380,7 +378,7 @@ abline(v=mean(data_long$LPI), col="red3")   # adding mean line in red colour
 
 For colour palette for base R, check this [link](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf). 
 
-Now let's try it with the _ggplot2 package_. This package allows us to make much nicer plots and has many functions. 
+Now let's try it with the __ggplot2 package__. This package allows us to make much nicer plots and has many functions. 
 
 ```{r, class.source='klippy', results='hide', message=FALSE, warning=FALSE}
 
@@ -408,9 +406,9 @@ Now let's try it with the _ggplot2 package_. This package allows us to make much
           plot.margin = unit(c(1,1,1,1), units = "cm")))      # adding a 1cm margin around the plot
 ```
 
-__"aes"__ = aesthetic:  this is where you _specify your data source and variables_, and _the properties of the graph which depend on those variables_. If you want all data points to be the same colour, you would define the colour = argument outside the aes() function. If you want the data points to be coloured by a factor’s levels (e.g. by site or species), you specify the colour = argument inside the aes()
+- __"aes"__ = aesthetic:  this is where you _specify your data source and variables_, and _the properties of the graph which depend on those variables_. If you want all data points to be the same colour, you would define the colour = argument outside the aes() function. If you want the data points to be coloured by a factor’s levels (e.g. by site or species), you specify the colour = argument inside the aes()
 
-_colour_ and _fill_ in geom_hist: "colour" colours the outside (lines) of the bars, while "fill" colours the the inside of the bars. 
+- _colour_ and _fill_ in geom_hist: "colour" colours the outside (lines) of the bars, while "fill" colours the the inside of the bars. 
 
 
 
@@ -428,9 +426,12 @@ data_long <- data_long %>%
   group_by(Entity) %>%            # grouping the data by Entity (does similar thing as having data in wide format)
   mutate(LPIaverage = mean(LPI))  # "mutate" creates new column with the name "LPIaverage" which values will be mean of LPI column
 
-
 # creating the barplot called "LPI_aver_barplot" from "data_long" data. In our aesthetic we need to specify x and y axis (the names of the specific column used). 
 # "fill" in aes tells R to colour the bars according to different Entities. 
+(LPI_aver_barplot <- ggplot(data_long, aes(x = Entity, y=LPIaverage, fill=Entity))
+  + geom_bar(position = position_dodge(), stat = "identity"))
+
+# Beautifying
 (LPI_aver_barplot <- ggplot(data_long, aes(x = Entity, y = LPIaverage, fill=Entity)) +
     geom_bar(position = position_dodge(), stat = "identity") +   # we need to use stat = "identity" when using "geom_bar" and own y-axis values 
     theme_classic() +
@@ -446,6 +447,7 @@ data_long <- data_long %>%
           legend.text = element_text(size = 10, face = "italic"), # setting the font for the legend text
           legend.title = element_blank(),                         # removing the legend title
           legend.position = "right"))                             # setting legend position 
+
 
 ```
 
@@ -519,6 +521,7 @@ The last plot we will create today is a __scatterplot__. From our data we will c
 
 ## <a name="section4">4. Saving plots</a> 
 
+__A. Saving with ggsave() by name of the plot__
 
 Almost at the end! Now we need to _save our beautiful figures_. When using the ggplot package, you can use the __ggsave__ function right below the code for the plot. If you know the name of your plot, you can also save it wherever you want in your script. 
 Like this: 
@@ -526,9 +529,9 @@ Like this:
 ```{r, class.source='klippy', results='hide', message=FALSE, warning=FALSE}
 # 4. Saving the plots ----
 
-# with ggplot2
 getwd()  # to remember your working directory to be able to specify where the plot should be saved 
 
+## Saving plots by their name ----
 ggsave("figures/histogram.jpg", plot=LPI_hist)
 ggsave("figures/barplot.jpg", plot=LPI_aver_barplot, width=7) 
 ggsave("figures/boxplot.jpg", plot=LPI_boxplot, width=7)
@@ -542,10 +545,11 @@ It can look like this:
 Second, you need to tell R _which plot you want to save_. Remember, each of the plots we created has a name at the beginning. 
 When your plot is saved in weird dimensions, they can always be changed - try the number that works the best for you. You can also specify height= xx. 
 
+__B.Saving by ggsave() right after the plot__
 
 If you want to __save plots right after their code__, you will need to just specify the filepath and name of the figure created. 
 Like this: 
-```{r, class.source='klippy', message=FALSE, warrning=FALSE, error=FALSE, echo=FALSE, results='hide'}
+```{r, class.source='klippy', message=FALSE, warrning=FALSE, error=FALSE, results='hide', fig.show="hide"}
 # Boxplot 
 (LPI_boxplot <- ggplot(data_long, aes(Entity, LPI)) +             
     geom_boxplot(aes(fill = Entity)) +                            
@@ -564,10 +568,65 @@ Like this:
 ggsave("figures/boxplot1.jpg", width=7, height= 3.5)     # adding ggsave code with specified dimensions and filepath + name of the figure
 ```
 
+__C. Saving plot using png() and dev.off()__
+
+Another way how to save figures is by code __"png()"__ and __"dev.off()"__. This is mostly used for figures not created by ggplot2 package, but it works with it too. I will show you how to save our first histogram (made in base R) and then the boxplot made with ggplot2 package. 
+
+```{r, class.source='klippy', message=FALSE, warrning=FALSE, error=FALSE, results='hide', fig.show="hide"}
+
+## Saving by png() and dev.off() ----
+# this is used mostly for plots not made by ggplot2, but works for any. 
+# write png("filepath/figure.png") before the figure code. 
+# write dev.off() right after the code
+
+# saving histogram made in base R
+png("figures/histogram1.png")    # specify filepath where figure will be saved in same way as for ggplot2
+par(cex.main = 1, cex.lab=0.9, cex.axis = 0.7)      
+hist(data_long$LPI,                         
+     main= "LPI distribution (1970-2016)",  
+     xlab= "LPI",                          
+     ylab= "Frequency",                     
+     col= "bisque",                         
+     breaks = 30)                           
+abline(v=mean(data_long$LPI), col="red3") 
+dev.off()
+
+# saving boxplot made by ggplot2
+png("figures/boxplot2.png", width=750)
+(LPI_boxplot <- ggplot(data_long, aes(Entity, LPI)) +             
+    geom_boxplot(aes(fill = Entity)) +                            
+    theme_classic() +                                              
+    ggtitle("LPI variation across location (1970-2016)")  +       
+    ylab("LPI") +                                                  
+    xlab("\nLocation")  +                                            
+    theme(axis.text.x = element_blank(),                           
+          axis.title = element_text(size = 14, face = "plain"),                      
+          panel.grid = element_blank(),                              
+          plot.title = element_text(size = 12, hjust=0.5),           
+          plot.margin = unit(c(1,1,1,1), units = , "cm"),          
+          legend.text = element_text(size = 10, face = "italic"),  
+          legend.title = element_blank(),                          
+          legend.position = "right")) 
+dev.off()
+
+```
+
+
 You can check all of the saved figures in the __File__ window any time. There you can also see if the plot was saved (look for time when they were modified). 
 
-__Now your turn.__ Try to save all of the plots we created by adding ggsave below each of them. You can name them differently, so you can easily tell them apart. Do they need different dimensions specifications? 
+------
+__Now your turn.__ Try to save all of the plots we created by adding _ggsave()_ or _png()_ and _dev.off()_ to each of them. You can name them differently, so you can easily tell them apart. Do they need different dimensions specifications? Which saving method do you prefere? 
+------
 
+__D. Saving plots manually__ 
+
+There is also another way, how to save your figures manually. In your _Plot_ window, choose figure you want to save and click __Export__ -> Save as Image. 
+
+![](pictures/Obrázok25.png)
+
+Then choose _Image format_, _directory_ and write _name of the figure_. Size of the figure can be change by specific numbers or by dragging the symbol at the bottom-right corner.
+
+![](pictures/Obrázok26.png)
 
 ## <a name="section5"> 5. Uploading to GitHub </a>
 
@@ -582,6 +641,8 @@ WOHOUUU everything is done and saved. Now, last thing - I promise - we need to _
 - It is very clever to upload your work continuously because GitHub will then have saved all of your file versions which you may need if you realize you did something absolutely wrong. 
 
 So, as your RStudio is already connected to Git, this process is easy. 
+
+<center> __BUT FIRST REMEMBER THIS PRAYER: COMMIT - PULL - PUSH__ </center> 
 
 1. Click on __Git__ in right top window
 

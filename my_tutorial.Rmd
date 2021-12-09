@@ -1,7 +1,7 @@
 ---
 title: <center> My first day in RStudio </center>
 subtitle: <h3 align="center">Absolute beginner in RStudio and GitHub tutorial for Data Science course for EES students</h3>
-author: <h5 align= "center"> Zuzi Koscikova </h5>
+author: <h4 align= "center"> Zuzi Koscikova </h5>
 date: <center> 6 December 2021 </center>
 output:
   prettydoc::html_pretty:

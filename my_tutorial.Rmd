@@ -108,15 +108,15 @@ Now, you can see new tab in the Environment window called Git. Thats the sign al
 
 ![](pictures/Obrázok10.png)
 
+------
 
-
-###  1. Starting to code
+###  2. Starting to code
 
 Here we are! Now we are ready to start coding. 
 
 At the beginning, all of your scripts should include the name of the tutorial you are doing (or assessment) - basicaly what is this script about, your name and contact and date. It is recomended to avoid date formats that can be misunderstood by European/American ones. You can use: 6 December 2021
 
-```{r setup, include=TRUE, }
+```{r, message = FALSE }
 
 # Data Science: Tutorial                       # note down information about course/Coding club and tutorial
 # My first day in RStudio
@@ -130,7 +130,7 @@ At the beginning, all of your scripts should include the name of the tutorial yo
 R is working with the different packages, which include different functions. Before you start working on some code, usually you need to have packages installed and loaded. However, you also can code in base R which means you dont need to have any packages because R itself include some functions. In the Data Science, however, most of the tasks require specific packages so lets look at this. 
 __To run the code, press Ctrl + Enter___
 
-```{r}
+```{r, message = FALSE}
 # Install packages ----
 # Here are the most used R packages you will need in Data Science
 # First, install packages 
@@ -168,7 +168,7 @@ For example:
 data <- read.csv("Tutorials/My first day in R/LPIdata.csv")
 ```
 
-```{r}
+```{r, message = FALSE}
 # Starting with the code ----
 # usually there will be some data provided in csv format you will need to use. 
 # when doing tutorials of coding club tutorials, from the github repository you can download ZIP folder. 
@@ -198,7 +198,7 @@ We can also open the dataframe by clicking on the data in Environment window.
 ![](pictures/Obrázok13.png)
 
 
-```{r}
+```{r, message = FALSE}
 
 ## checking the data ----
 
@@ -214,7 +214,7 @@ First we need to open our data frame - by clicking on it in the Environment wind
 
 The first column we need is column 3, the last is 49. 
 
-```{r}
+```{r, message = FALSE}
 ## Long format ----
 # We will transform the wide dataframe into long format by moving all the year columns into one, where they will be bellow each other. 
 # We need to check in the dataframe which columns are they in now 
@@ -233,7 +233,7 @@ data_long <- pivot_longer(data, cols=3:49, names_to = "year", values_to = "LPI")
 
 if you check the data now, they are in 4 columns. However, we have all years with X at the beginning. This can be easily solved by mutate and parse_number operators. 
 
-```{r}
+```{r, message = FALSE}
 
 # Deleting the X in front of the year values
 data_long <- mutate(data_long, year = parse_number(year))
@@ -251,7 +251,7 @@ There are different ways how to code. It is preffered to have the script as clea
 Let's join 2 previous codes into one: 
 
 
-```{r}
+```{r, message = FALSE}
 # Using pipes
 
 data_long <- data %>% 
@@ -268,7 +268,7 @@ First we will write new data frame (or object) we want to create. By the arrow w
 
 Sometimes you have in your data values, and columns that you don't need. In our data, Entity includes also values for reptiles or whole World. We also have column Code which we do not need. let's delete them
 
-```{r}
+```{r, message = FALSE}
 # First, check what different values we have in specific columns
 unique(data_long$Entity)
 unique(data_long$year)
@@ -294,21 +294,226 @@ data_long <- data %>%
 ```
 
 
+------
+### 3. Plotting 
 
+Now, our data are ready for some plotting. In this tutorial we will cover 4 types of graphs you can do, using basic R and ggplot2 package. 
 
+#### __A. Histograms__
+First, let's have a look on the histograms. Often, histograms are used for checking the distribution of the data we are working with. WIth this code, we will plot the histogram to see how frequent is the distribution of specific LPI (living planet index) across different animals and in the range of 46 years (1970-2016). 
 
+Each of the graphs can be made in base R and also by ggplot2. We will create histogram in both, but as in Data Science are mostly used figures created in ggplot2, we will continue with that. 
 
+```{r}
+# Plotting ---- 
 
+## Histogram of the LPI 
+# with base R
+hist(data_long$LPI)                           # histogram of the LPI column from data_long dataset
+hist(data_long$LPI, breaks = 30)              # try change number for breaks, it will change the distribution of bars
+abline(v=mean(data_long$LPI), col = "red")    # we can also add line of mean, median or other specific number, you can change colour
+abline(h=10, col = "blue")
+# with abline we can add horizontal (with h) or vertical (with v) lines on the plot. 
+# we can plot median, mean or specific number 
 
-
-
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+# Beautifying of base R histogram
+par(cex.main = 1, cex.lab=0.9, cex.axis = 0.7)      
+# size of the title (cex.main) and size of axis labels (cex.lab), size of axis values (cex.axis)
+hist(data_long$LPI,                          # histogram of the LPI column from data_long dataset
+     main= "LPI distribution (1970-2016)",   # title of plot
+     xlab= "LPI",                            # x-axis label
+     ylab= "Frequency",                      # y-axis label
+     col= "bisque",                          # changing colour
+     breaks = 30)                            # specifying bars distribution
+abline(v=mean(data_long$LPI), col="red3")    # adding mean line in red colour
 ```
+
+For colour pallete for base R, check this [link](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf). 
+
+Now let's try it with ggplot2 package. This package allows us to make much nicer plots and has many functions. 
+```{r}
+
+# with ggplot2
+(LPI_hist <- ggplot(data_long, aes(x = LPI)) +     
+      geom_histogram())
+# creating new plot "LPI_hist" by ggplot function, from the "data_long" data, where we are changing x axis name to LPI
+# by geom_histogram we are specifying the type of the plot we want
+
+# Beautifying
+(LPI_hist <- ggplot(data_long, aes(x = LPI)) +                
+    geom_histogram(binwidth = 5, colour = "dark green", fill = "light blue") +    # Changing the binwidth and colours of the bars.   
+    geom_vline(aes(xintercept = mean(LPI)),                                # Adding a line for mean abundance
+               colour = "orange", linetype = "dashed", size=1) +           # Changing the look of the line
+    theme_minimal() +                                         # Changing the theme to get rid of the grey background
+    ylab("Count\n") +                                         # Changing the text of the y and x axis label
+    xlab("\nLPI")  +                                          # \n adds a blank line between axis and text
+    ggtitle("LPI distribution (1970-2016)") +                 # Adding plot title
+    theme(axis.text = element_text(size = 12),                # Changing font size of axis labels and title
+          plot.title = element_text(hjust=0.5, size = 12),         # hjust = moves to the right/left
+          axis.title.x = element_text(size = 12, face = "plain"),  # face="plain" is the default, you can change it to italic, bold, etc. 
+          axis.title.y = element_text(size = 12, face= "plain"),
+          panel.grid = element_blank(),                  # Removing the grey grid lines
+          plot.margin = unit(c(1,1,1,1), units = "cm"))) 
+```
+
+"aes" = aesthetic:  this is where you specify your data source and variables, AND the properties of the graph which depend on those variables. If you want all data points to be the same colour, you would define the colour = argument outside the aes() function. If you want the data points to be coloured by a factor’s levels (e.g. by site or species), you specify the colour = argument inside the aes()
+
+colour and fill in geom_hist: "colour" colours the outside (lines) of the bars, while "fill" colours the the inside of the bars. 
+
+
+
+### __B. Barplots__
+
+Another type of the plot you can create in R is barplot. With our data, we will create barplot of average LPI values over the 46 years in different entities. For this we will need to first add new column to our data with calculated LPI average. 
+
+```{r}
+# BARPLOT ----
+        
+# barplot of average LPI according to entities 
+
+# adding a new column to our data - average of LPI 
+data_long <- data_long %>%    
+  group_by(Entity) %>%            # grouping the data by Entity (does similar thing as having data in wide format)
+  mutate(LPIaverage = mean(LPI))  # mutate create new column with the name "LPIaverage" which values will be mean of LPI column
+
+# ggplot2
+# creating the barplot called "LPI_aver_barplot" from "data_long" data. In our aesthetic we need to specify x and y axis (the names of the specific column used). 
+# "fill" in aes tells R to colour the bars according to different Entities. 
+(LPI_aver_barplot <- ggplot(data_long, aes(x = Entity, y = LPIaverage, fill=Entity)) +
+    geom_bar(position = position_dodge(), stat = "identity") +   # we need to use stat = "identity" when using "geom_bar" and own y values 
+    theme_minimal() +
+    ggtitle("Average LPI (1970-2016)") +                   # plot title
+    ylab("LPI\n") +                                        # y-axis title
+    xlab("Entity")  +                                      # x-axis title
+    theme(axis.text.x = element_blank(),                   # deleting names of Entities form x-axis
+          axis.text.y = element_text(size = 10),           # changing size of y-axis labels
+          axis.title = element_text(size = 12, face = "plain"),   # adjusting axis titles size and format
+          plot.title = element_text(size = 12, hjust=0.5),        # adjusting plot title size and position
+          panel.grid = element_blank(),                           # deleting grid
+          legend.text = element_text(size = 10, face = "italic"), # Setting the font for the legend text
+          legend.title = element_blank(),                         # Removing the legend title
+          legend.position = "right"))                             # Setting legend position 
+
+```
+
+### __C. BOXPLOT__
+
+Next, we will create boxplot of LPI variation across locations. 
+Boxplot shows us median (horizontal line in the box), minimum (end of the lower vertical line), maximum (end of the upper vertical line), 1st and 3rd quartile (lower and upper box edges), and outliers (dots). 
+
+```{r}
+
+# BOXPLOT ----
+
+(LPI_boxplot <- ggplot(data_long, aes(Entity, LPI)) + geom_boxplot())  
+# creating plot called "LPI_boxplot" by ggplot from "data_long" data. The aesthetic includes x axis and y axis specification. 
+# "geom_boxplot() specifyies type of the plot
+
+# Beautifying
+(LPI_boxplot <- ggplot(data_long, aes(Entity, LPI)) +             
+    geom_boxplot(aes(fill = Entity)) +                             # adding colour of the boxes by Entity (fill=Entity)
+    theme_classic() +                                              # changing theme
+    ggtitle(" LPI variation across locations (1970-2016)")  +       # plot title
+    ylab("LPI\n") +                                                # y-axis title
+    xlab("\nLocation")  +                                          # x-axis title
+    theme(axis.text.x = element_blank(),                           # deleting x-axis labels (because we have it in the legend)
+          axis.title = element_text(size = 14, face = "plain"),    # adjusting axis titles                    
+          panel.grid = element_blank(),                            # Removing the background grid lines  
+          plot.title = element_text(size = 12, hjust=0.5),         # adjusting plot title   
+          plot.margin = unit(c(1,1,1,1), units = , "cm"),          # adding a margin
+          legend.text = element_text(size = 10, face = "italic"),  # setting the font for the legend text
+          legend.title = element_blank(),                          # removing the legend title
+          legend.position = "right"))                              # setting legend position
+
+```
+
+
+## __D. Scatterplot__
+
+Last plot we will create today is scatterplot. From our data we will create scatterplot of yearly LPI values for each of the location. 
+
+```{r}
+# SCATTERPLOT
+
+# scatterplot of LPI for each location
+(LPI_scatter <- ggplot (data_long, aes(x = year, y = LPI, colour = Entity)) + geom_point())
+# creating a plot called "LPI_scatter" by ggplot from "data_long" data. We are specifying columns for x and y axis and the colour difference based on location
+# geom_point() specifies type of the plot
+
+# Beautifying
+(LPI_scatter <- ggplot(data_long, aes (x = year, y = LPI, colour =Entity)) +
+    geom_point(size = 1.5) +                                # changing point size
+    geom_smooth(method = "lm", se=FALSE) +                  # adding linear model fit (method=lm), deleting standard error ribbons (se=false)
+    theme_classic() +                                       # changing theme 
+    ggtitle("Yearly LPI in different locations (1970-2016)")  +   # plot title
+    ylab("LPI\n") +                                               # y-axis title
+    xlab("\nYear")  +                                             # x-axis title
+    theme(axis.text.x = element_text(size = 10, angle = 45, vjust = 1, hjust = 1),  # adjusting x-axis labels (size, angle, vjust and hjust - vertical and horizontal position)
+          axis.text.y = element_text(size = 10),                                    # adjusting y-axis labels
+          axis.title = element_text(size = 12, face = "plain"),                     # adjusting axis titles     
+          panel.grid = element_blank(),                             # removing the background grid lines               
+          plot.margin = unit(c(1,1,1,1), units = , "cm"),           # adding a 1cm margin around the plot
+          plot.title = element_text(size = 12, hjust=0.3),          # adjusting plot title 
+          legend.text = element_text(size = 10, face = "italic"),   # setting the font for the legend text
+          legend.title = element_blank(),                           # removing the legend title
+          legend.position = "right"))                               # setting legend position 
+
+```
+
+
+###  4. Saving plots 
+
+Almost at the end! Now we need to save our beautiful figures. When using ggplot package, you can use ggsave function right below the code for the plot. If you know the name of your plot, you can also save it wherever you want in your script. 
+Like this: 
+
+```{r}
+# 4. Saving the plots ----
+
+# with ggplot2
+getwd()  # to remember your working directory to be able to specify where the plot should be saved 
+# One 
+ggsave("histogram.jpg", plot=LPI_hist)
+ggsave("barplot.jpg", plot= LPI_aver_barplot, width = 7) 
+ggsave("boxplot.jpg", plot = LPI_boxplot, width = 7)
+ggsave("scatterplot.jpg", plot = LPI_scatter, width = 7)
+
+```
+First, in the brackets we need to specify the filepath where your plot will be saved finished by name of the figure.jpg (if you want to save it in jpg format). 
+It can look like this: 
+```ggsave("Tutorials/My first day in RStudio/Figures/histogram.jpg", ...)```
+Second, you need to tell R which plot you want to save. Remember, each of the plots we created has name at the beginning. 
+When your plot is saved in weird dimensions, they can be always changed - try the number that works the best for you. You can also specify height= xx. 
+
+
+If you want to save plots right after their code, you will need to just specify the filepath and name of the figure created. 
+Like this: 
+```{r}
+# Boxplot 
+(LPI_boxplot <- ggplot(data_long, aes(Entity, LPI)) +             
+    geom_boxplot(aes(fill = Entity)) +                            
+    theme_classic() +                                              
+    ggtitle("LPI variation across location (1970-2016)")  +       
+    ylab("LPI") +                                                  
+    xlab("\nLocation")  +                                            
+    theme(axis.text.x = element_blank(),                           
+          axis.title = element_text(size = 14, face = "plain"),                      
+          panel.grid = element_blank(),                              
+          plot.title = element_text(size = 12, hjust=0.5),           
+          plot.margin = unit(c(1,1,1,1), units = , "cm"),          
+          legend.text = element_text(size = 10, face = "italic"),  
+          legend.title = element_blank(),                          
+          legend.position = "right")) 
+ggsave("boxplot1.jpg", width=7, height= 3.5)     # adding ggsave code with specified dimensions and filepath + name of the figure
+```
+
+You can check all of the saved figures in the File window any time. There you can also see if the plot was saved (look for time when they were modified). 
+
+Now your turn. Try to save all of the plots we did by adding ggsave below each of them. You can name them differently, so you will see the difference. Do they need different dimensions specifications? 
+
+
+###  5. Uploading to GitHub 
+
+
+
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

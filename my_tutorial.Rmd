@@ -24,7 +24,7 @@ There are just few things you need to be ready for:
 - There will be a lot to do during the semester, but you can do it! 
 
 - They will be telling you it's a lot of fun and you may not agree (especially when your R decides not to work) but it can be fun too. Check these tutorials for some examples: 
-  - [Magic figures](*will be added)
+  - [Magic figures](https://eddatascienceees.github.io/tutorial-barbora8/)
   - [Cool packages](*will be added) 
 
 

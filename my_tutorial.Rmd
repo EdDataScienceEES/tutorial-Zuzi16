@@ -17,7 +17,7 @@ In case you are as lost as I was during the first 1-2 weeks of the Data Science 
 To be honest, it is not so overwhelming once you know what are you doing.
 
 
-There are just few things you need to be ready for: 
+There are just few things you need to be ready for:
 
 - RStudio likes to not cooperate with you very often but try to avoid breakdowns, it will work somehow.
 
